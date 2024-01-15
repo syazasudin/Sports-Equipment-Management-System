@@ -1,0 +1,201 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Supplier - School Sports Equipment Management System</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #ffd700; /* Yellow background */
+    margin: 0;
+    padding: 0;
+  }
+ header {
+  background-color: #333;
+  color: white;
+  padding: 10px; /* Reduced padding to make the header less thick */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to the start to push the logo to the left */
+}
+
+.header-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px; /* Adjust space between logo and title */
+}
+
+.header-content {
+  display: flex;
+  justify-content: center; /* Center the title within header-content */
+  flex-grow: 1;
+  position: relative; /* Allows absolute positioning inside */
+}
+
+h2 {
+  position: absolute; /* Position the title absolutely within header-content */
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+    .navigator {
+      background-color: #f8f8f8; /* Grey background for the navigator */
+      color: #333; /* Black text color */
+      padding: 10px 0;
+      text-align: center;
+    }
+    .navigator a {
+      color: #000; /* Black text color */
+      text-decoration: none;
+      margin: 0 15px;
+    }
+  .contact-container {
+    width: 400px;
+    margin: 20px auto; /* Reduced margin to accommodate header/nav/footer */
+    padding: 40px;
+    background-color: #fff;
+    border: 5px solid black; /* Black border around the container */
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5); /* Add shadow for depth */
+  }
+  h1 {
+    color: black;
+    margin-bottom: 30px;
+    font-size: 24px;
+  }
+  .form-item {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea,
+  input[type="submit"] {
+    width: calc(100% - 20px); /* Adjust width for padding */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+  }
+  input[type="submit"] {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  .contact-info {
+    text-align: center;
+    margin-top: 20px;
+  }
+  a.email-link {
+    color: black;
+    text-decoration: none;
+  }
+  a.email-link:hover {
+    text-decoration: underline;
+  }
+.footer {
+      background-color: #333; /* Black background for the footer */
+      color: #fff; /* White text color */
+      padding: 10px 0;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="sport.jpg" alt="Sports Logo" class="header-logo">
+  <div class="header-content">
+    <h2>School Sports Equipment Management System</h2>
+  </div>
+</header>
+
+  <div class="navigator">
+    <a href='menu.html'>Home</a>
+    <a href='EquipmentRegistrations.html'>Equipment Registration</a>
+    <a href='borrowEquip.html'>Borrow Equipment</a>
+    <a href='inventory.html'>Inventory</a>
+    <a href='contactSupplier.html'>Contact Supplier</a>
+    <a href='FAQ.html'>FAQ</a>
+  </div>
+
+<div class="contact-container">
+  <h1>Contact Supplier</h1>
+  <form id="contactForm" action="mailto:suppliersport50@gmail.com" method="GET">
+
+    <div class="form-item">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div class="form-item">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-item">
+      <label for="telephone">Telephone:</label>
+      <input type="tel" id="telephone" name="telephone" required>
+    </div>
+    <div class="form-item">
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+    </div>
+    <div class="form-item">
+      <input type="submit" value="Send Message">
+    </div>
+  </form>
+  <div class="contact-info">
+    <p>Or you can reach us by phone at:</p>
+    <p><strong>(123) 456-7890</strong></p>
+    <p>Your email will be send directly to:</p>
+    <p>suppliersport50@gmail</p>
+  </div>
+</div>
+
+ <div class="footer">
+    &copy; 2023 School Sports Equipment Management System
+  </div>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevents the default form submission
+
+    // Get the form data
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var telephone = document.getElementById('telephone').value;
+    var message = document.getElementById('message').value;
+
+    // Create the email link
+    var mailtoLink = 'mailto:suppliersport50@gmail.com?subject=' + encodeURIComponent('Equipment Supplier Request') +
+                     '&body=' + encodeURIComponent('Name: ' + name + '\n' +
+                                                  'Email: ' + email + '\n' +
+                                                  'Telephone: ' + telephone + '\n\n' +
+                                                  'Message: ' + message);
+
+    // Open the default mail client with the email draft
+    window.location.href = mailtoLink;
+
+    // Optionally, reset the form
+    document.getElementById('contactForm').reset();
+  });
+</script>
+
+
+
+</body>
+</html>

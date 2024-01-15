@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration - School Sports Equipment Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffd700; /* Yellow background */
+      margin: 0;
+      padding: 0;
+    }
+   header {
+  background-color: #333;
+  color: white;
+  padding: 10px; /* Reduced padding to make the header less thick */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to the start to push the logo to the left */
+}
+
+.header-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px; /* Adjust space between logo and title */
+}
+
+.header-content {
+  display: flex;
+  justify-content: center; /* Center the title within header-content */
+  flex-grow: 1;
+  position: relative; /* Allows absolute positioning inside */
+}
+
+h2 {
+  position: absolute; /* Position the title absolutely within header-content */
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+    .registration-container {
+      width: 400px;
+      margin: 50px auto;
+      padding: 40px;
+      background-color: #fff;
+      border: 5px solid black; /* Black border around the form */
+      text-align: center;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.5); /* Add shadow for depth */
+    }
+    h1 {
+      color: black;
+      margin-bottom: 40px;
+      font-size: 24px;
+      padding-bottom: 10px;
+    }
+    .registration-input {
+      margin-bottom: 20px;
+      width: 90%; /* Adjust width for padding */
+      padding: 10px;
+      border: 1px solid #000;
+      font-size: 16px;
+    }
+    .registration-button {
+      width: 100px;
+      padding: 10px;
+      margin: 10px;
+      background-color: #228B22; /* Forest Green background */
+      color: white;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+    .registration-button:hover {
+      background-color: #2E8B57; /* Sea Green background for hover */
+    }
+    .registration-footer {
+      margin-top: 20px;
+    }
+    .registration-footer a {
+      color: #0000EE; /* Blue color for the link */
+      text-decoration: none;
+    }
+    .footer {
+      background-color: #333; /* Black background for the footer */
+      color: #fff; /* White text color */
+      padding: 10px 0;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    .admin-label {
+      display: block;
+      font-size: 20px;
+      margin-top: 40px;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <img src="sport.jpg" alt="Sports Logo" class="header-logo">
+  <div class="header-content">
+    <h2>Welcome to the Sports Equipment Management System</h2>
+  </div>
+</header>
+
+ <div class="registration-container">
+  <form id="registrationForm">
+    <h1>USER REGISTRATION</h1>
+    <div>
+      <label for="fullname" style="text-align: left;">FULL NAME</label>
+      <input type="text" id="fullname" class="registration-input" autocomplete="name" required>
+    </div>
+    <div>
+      <label for="email" style="text-align: left;">EMAIL</label>
+      <input type="email" id="email" class="registration-input" autocomplete="email" required>
+    </div>
+    <div>
+      <label for="username" style="text-align: left;">USERNAME</label>
+      <input type="text" id="username" class="registration-input" autocomplete="username" required>
+    </div>
+    <div>
+      <label for="password" style="text-align: left;">PASSWORD</label>
+      <input type="password" id="password" class="registration-input" autocomplete="new-password" required>
+    </div>
+    <div>
+      <label for="confirm-password" style="text-align: left;">CONFIRM PASSWORD</label>
+      <input type="password" id="confirm-password" class="registration-input" autocomplete="new-password" required>
+    </div>
+    <div>
+      <button class="registration-button" onclick="register()">REGISTER</button>
+    </div>
+    <div class="registration-footer">
+      <span>Already have an account?</span>
+      <a href='loginpageV2.html' class="registration-footer">Log in</a>
+    </div>
+  </div>
+ </form>
+</div>
+
+  <div class="footer">
+    &copy; 2023 School Sports Equipment Management System
+  </div>
+
+ <script>
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var fullname = document.getElementById('fullname').value;
+    var email = document.getElementById('email').value;
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('confirm-password').value;
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+    }
+
+    // Storing data in localStorage
+    localStorage.setItem('fullname', fullname);
+    localStorage.setItem('email', email);
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+
+    // Notify the user
+    alert('Registration successful!');
+
+    // Optional: Reset the form or redirect the user to the login page
+    document.getElementById('registrationForm').reset();
+});
+</script>
+ 
+
+
+</body>
+</html>

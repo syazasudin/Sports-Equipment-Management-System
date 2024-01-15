@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ - School Sports Equipment Management System</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #ffd700; /* Yellow background */
+    margin: 0;
+    padding: 0;
+  }
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px; /* Reduced padding to make the header less thick */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to the start to push the logo to the left */
+}
+
+.header-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px; /* Adjust space between logo and title */
+}
+
+.header-content {
+  display: flex;
+  justify-content: center; /* Center the title within header-content */
+  flex-grow: 1;
+  position: relative; /* Allows absolute positioning inside */
+}
+
+h2 {
+  position: absolute; /* Position the title absolutely within header-content */
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+ 
+.navigator {
+      background-color: #f8f8f8; /* Grey background for the navigator */
+      color: #333; /* Black text color */
+      padding: 10px 0;
+      text-align: center;
+    }
+    .navigator a {
+      color: #000; /* Black text color */
+      text-decoration: none;
+      margin: 0 15px;
+    }
+  
+  .faq-container {
+    width: 400px;
+    margin: 20px auto; /* Reduced margin to accommodate header/nav/footer */
+    padding: 40px;
+    background-color: #fff;
+    border: 5px solid black; /* Black border around the container */
+    text-align: left;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5); /* Add shadow for depth */
+  }
+  h1 {
+    color: black;
+    margin-bottom: 30px;
+    font-size: 24px;
+    text-align: center;
+  }
+  .faq-item {
+    margin-bottom: 20px;
+  }
+  .question {
+    font-weight: bold;
+  }
+  .answer {
+    padding-left: 20px;
+  }
+
+ .footer {
+      background-color: #333; /* Black background for the footer */
+      color: #fff; /* White text color */
+      padding: 10px 0;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+</style>
+</head>
+<body>
+<header>
+  <img src="sport.jpg" alt="Sports Logo" class="header-logo">
+  <div class="header-content">
+    <h2>Welcome to the Sports Equipment Management System</h2>
+  </div>
+</header>
+
+<div class="navigator">
+    <a href='menu.html'>Home</a>
+    <a href='EquipmentRegistrations.html'>Equipment Registration</a>
+    <a href='borrowEquip.html'>Borrow Equipment</a>
+    <a href='inventory.html'>Inventory</a>
+    <a href='contactSupplier.html'>Contact Supplier</a>
+    <a href='FAQ.html'>FAQ</a>
+  </div>
+
+
+<div class="faq-container">
+  <h1>Frequently Asked Questions</h1>
+  <div class="faq-item">
+    <div class="question">How do I borrow equipment?</div>
+    <div class="answer">You can borrow equipment by filling out the borrowing form on our website and submitting your request.</div>
+  </div>
+  <!-- More FAQ items here -->
+</div>
+
+ <div class="footer">
+    &copy; 2023 School Sports Equipment Management System
+  </div>
+
+</body>
+</html>

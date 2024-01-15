@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - School Sports Equipment Management System</title>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #ffd700;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px; /* Reduced padding to make the header less thick */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to the start to push the logo to the left */
+}
+
+.header-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px; /* Adjust space between logo and title */
+}
+
+.header-content {
+  display: flex;
+  justify-content: center; /* Center the title within header-content */
+  flex-grow: 1;
+  position: relative; /* Allows absolute positioning inside */
+}
+
+h2 {
+  position: absolute; /* Position the title absolutely within header-content */
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Rest of the CSS */
+
+
+.login-container {
+  width: 400px;
+  margin: 20px auto;
+  padding: 40px;
+  background-color: #fff;
+  border: 5px solid black; /* This creates the box around the form */
+  text-align: center;
+}
+/* The rest of your CSS for inputs and buttons */
+
+
+  .login-input {
+    margin-bottom: 20px;
+    width: 90%; /* Adjust width for padding */
+    padding: 10px;
+    border: 1px solid #000;
+    font-size: 16px;
+  }
+  .login-button {
+    width: 100px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #228B22; /* Forest Green background */
+    color: white;
+    border: 1px solid #000;
+    cursor: pointer;
+  }
+  .login-button:hover {
+    background-color: #2E8B57; /* Sea Green background for hover */
+  }
+  .login-button.clear {
+    background-color: #8B0000; /* Dark Red background for the clear button */
+  }
+  .login-button.clear:hover {
+    background-color: #B22222; /* Firebrick for hover */
+  }
+  .login-footer {
+    margin-top: 20px;
+  }
+  .login-footer a {
+    color: #0000EE; /* Blue color for the link */
+    text-decoration: none;
+  }
+  .admin-label {
+    display: block;
+    font-size: 20px;
+    margin-top: 40px;
+    color: #000;
+  }
+ .footer {
+      background-color: #333; /* Black background for the footer */
+      color: #fff; /* White text color */
+      padding: 10px 0;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+</style>
+</head>
+
+<body>
+
+<!-- Rest of your HTML above -->
+<header>
+  <img src="sport.jpg" alt="Sports Logo" class="header-logo">
+  <div class="header-content">
+    <h2>Welcome to the Sports Equipment Management System</h2>
+  </div>
+</header>
+<!-- Rest of your HTML below -->
+
+
+
+<div class="login-container">
+  <h1>LOGIN</h1>
+  <div>
+    <label for="username" style="text-align: left;">USERNAME</label>
+    <input type="text" id="username" class="login-input" autocomplete="username" required>
+  </div>
+  <div>
+    <label for="password" style="text-align: left;">PASSWORD</label>
+    <input type="password" id="password" class="login-input" autocomplete="current-password" required>
+  </div>
+  <div>
+    <button class="login-button" onclick="login()">LOG IN</button>
+    <button type="button" class="login-button clear" onclick="clearForm()">CLEAR</button>
+  </div>
+  <div class="login-footer">
+    <span>Not registered yet?</span>
+    <a href='registrationPage.html' class="login-footer">Sign up</a>
+  </div>
+  <div class="login-footer">
+<a href='UserManagement.html' class="login-footer">ADMIN</div>
+</div>
+
+<div class="footer">
+    &copy; 2023 School Sports Equipment Management System
+  </div>
+
+<!-- Add this code in your login page -->
+<script>
+function login() {
+  var enteredUsername = document.getElementById('username').value;
+  var enteredPassword = document.getElementById('password').value;
+
+  // Retrieve stored data from localStorage
+  var storedUsername = localStorage.getItem('username');
+  var storedPassword = localStorage.getItem('password');
+
+  // Check if entered credentials match stored credentials
+  if (enteredUsername === storedUsername && enteredPassword === storedPassword) {
+    // Redirect to a different page on successful login
+    window.location.href = 'menu.html';
+    alert('Login successful');
+
+    // Store user login activity in localStorage
+    var loginActivity = JSON.parse(localStorage.getItem('loginActivity')) || [];
+    loginActivity.push({
+      username: enteredUsername,
+      loginTime: new Date().toLocaleString(),
+      status: 'Online'
+    });
+    localStorage.setItem('loginActivity', JSON.stringify(loginActivity));
+  } else {
+    alert('Invalid username or password');
+  }
+}
+
+function clearForm() {
+  document.getElementById('username').value = '';
+  document.getElementById('password').value = '';
+}
+</script>
+
+</body>
+</html>

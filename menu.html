@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - School Sports Equipment Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffd700; /* Yellow background */
+      margin: 0;
+      padding: 0;
+    }
+    header {
+  background-color: #333;
+  color: white;
+  padding: 10px; /* Reduced padding to make the header less thick */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to the start to push the logo to the left */
+}
+
+.header-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px; /* Adjust space between logo and title */
+}
+
+.header-content {
+  display: flex;
+  justify-content: center; /* Center the title within header-content */
+  flex-grow: 1;
+  position: relative; /* Allows absolute positioning inside */
+}
+h2 {
+  position: absolute; /* Position the title absolutely within header-content */
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+    .menu-container {
+      width: 300px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 3px solid #000; /* Black border */
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.5); /* Shadow for depth */
+    }
+    .menu {
+     background-color: #f8f8f8; /* Grey background for the navigator */
+      color: #333; /* Black text color */
+      padding: 10px 0;
+      text-align: center;
+    }
+    .menu-item {
+      background-color: #228B22; /* Forest Green background */
+      color: white;
+      padding: 10px;
+      margin: 5px 0; /* Vertical spacing between buttons */
+      border: none;
+      width: 100%; /* Full width within the container */
+      box-sizing: border-box; /* Include padding and border in the element's total width and height */
+      text-align: left;
+      cursor: pointer;
+      font-size: 18px;
+      display: block; /* Ensures buttons are block-level elements */
+    }
+    .menu-item:hover {
+      background-color: #2E8B57; /* Sea Green background for hover */
+    }
+    .footer {
+      background-color: #333; /* Black background for the footer */
+      color: #fff; /* White text color */
+      padding: 20px 0;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+<img src="sport.jpg" alt="Sports Logo" class="header-logo">
+  <div class="header-content">
+    <h2>School Sports Equipment Management System</h2>
+  </div>
+</header>
+
+  <div class="menu-container">
+    <div class="menu">Menu</div>
+    <button class="menu-item" onclick="location.href='EquipmentRegistrations.html'">Equipment Registration</button>
+    <button class="menu-item" onclick="location.href='borrowEquip.html'">Borrow Equipment</button>
+    <button class="menu-item" onclick="location.href='inventory.html'">Inventory</button>
+    <button class="menu-item" onclick="location.href='FAQ.html'">FAQ</button>
+    <button class="menu-item" onclick="location.href='contactSupplier.html'">Contact Supplier</button>
+    <button class="menu-item" onclick="location.href='loginpageV2.html'">Logout</button>
+  </div>
+
+  <div class="footer">
+    &copy; 2023 School Sports Equipment Management System
+  </div>
+
+</body>
+</html>

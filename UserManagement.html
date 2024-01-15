@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Login Activity - School Sports Equipment Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffd700; /* Yellow background */
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 5px solid black; /* Black border around the form */
+      text-align: center;
+    }
+    h1 {
+      color: black;
+      margin-bottom: 20px;
+      font-size: 24px;
+      padding-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+     header {
+  background-color: #333;
+  color: white;
+  padding: 10px; /* Reduced padding to make the header less thick */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to the start to push the logo to the left */
+}
+
+.header-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px; /* Adjust space between logo and title */
+}
+
+.header-content {
+ color: #fff; /* White color */
+  text-decoration: none; /* Remove underline */
+  display: flex;
+  justify-content: center; /* Center the title within header-content */
+  flex-grow: 1;
+  position: relative; /* Allows absolute positioning inside */
+}
+h2 {
+  position: absolute; /* Position the title absolutely within header-content */
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+h2 a {
+  float: none; /* Remove float */
+}
+/* Logout link specific styles */
+/* Existing styles... */
+
+.logout-link {
+  color: #fff; /* White color */
+  text-decoration: none; /* Remove underline */
+  margin-left: auto; /* Push the link to the right */
+  padding-right: 20px; /* Padding on the right side */
+  z-index: 1000; /* Ensure it's on top of other elements */
+  position: relative; /* Position relative for z-index to take effect */
+}
+
+
+
+    .header a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+    .navigator {
+      background-color: #f8f8f8; /* Grey background for the navigator */
+      color: #333; /* Black text color */
+      padding: 10px 0;
+      text-align: center;
+    }
+    .navigator a {
+      color: #000; /* Black text color */
+      text-decoration: none;
+      margin: 0 15px;
+    }
+    .footer {
+      background-color: #333; /* Black background for the footer */
+      color: #fff; /* White text color */
+      padding: 10px 0;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+<img src="sport.jpg" alt="Sports Logo" class="header-logo">
+  <div class="header-content">
+    <h2>School Sports Equipment Management System</h2>
+    <!-- Logout button moved to the header -->
+    <a href='loginpageV2.html' onclick="logout()" class="logout-link">Logout</a>
+  </div>
+</header>
+
+  <div class="navigator">
+    <a href='menu.html'>Home</a>
+    <a href='EquipmentRegistrations.html'>Equipment Registration</a>
+    <a href='borrowEquip.html'>Borrow Equipment</a>
+    <a href='inventory.html'>Inventory</a>
+    <a href='contactSupplier.html'>Contact Supplier</a>
+    <a href='FAQ.html'>FAQ</a>
+  </div>
+
+  <!-- Modify the User Login Activity page to display the login activity table -->
+<div class="container">
+  <h1>User Login Activity</h1>
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Login Time</th>
+      <th>Status</th>
+    </tr>
+    <!-- Display dynamic data from localStorage -->
+    <script>
+      var loginActivity = JSON.parse(localStorage.getItem('loginActivity')) || [];
+
+      loginActivity.forEach(function (activity) {
+        document.write('<tr>');
+        document.write('<td>' + activity.username + '</td>');
+        document.write('<td>' + activity.loginTime + '</td>');
+        document.write('<td>' + activity.status + '</td>');
+        document.write('</tr>');
+      });
+    </script>
+  </table>
+</div>
+
+
+  <div class="footer">
+    &copy; 2023 School Sports Equipment Management System
+  </div>
+
+  <script>
+    function logout() {
+      // Clear user session data
+  localStorage.clear(); // Or use specific keys like localStorage.removeItem('username');
+ alert('Logout successful'); // For demonstration purposes
+  // Redirect to the login page or a confirmation page
+  window.location.href = 'loginpageV2.html'; // Replace with your login page
+
+     
+    }
+  </script>
+</body>
+</html>

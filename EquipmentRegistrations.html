@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Equipment Registration - School Sports Equipment Management System</title>
+  <style>
+html {
+  height: 100%;
+}
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffd700; /* Generic yellow background */
+      margin: 0;
+      padding: 0;
+	padding-bottom: 50px;
+min-height: 100%;
+  margin-bottom: 50px; 
+    }
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px; /* Reduced padding to make the header less thick */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to the start to push the logo to the left */
+}
+
+    .header-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px; /* Adjust space between logo and title */
+}
+
+.header-content {
+  display: flex;
+  justify-content: center; /* Center the title within header-content */
+  flex-grow: 1;
+  position: relative; /* Allows absolute positioning inside */
+}
+
+h2 {
+  position: absolute; /* Position the title absolutely within header-content */
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+    .navigator {
+      background-color: #f8f8f8; /* Grey background for the navigator */
+      color: #333; /* Black text color */
+      padding: 10px 0;
+      text-align: center;
+    }
+    .navigator a {
+      color: #000; /* Black text color */
+      text-decoration: none;
+      margin: 0 15px;
+    }
+    .equipment-registration-container {
+      width: 400px;
+      margin: 50px auto;
+      padding: 40px;
+      background-color: #fff;
+      border: 5px solid black; /* Black border around the form */
+      text-align: center;
+    }
+    h1 {
+      color: black;
+      margin-bottom: 40px;
+      font-size: 24px;
+      padding-bottom: 10px;
+    }
+    .equipment-registration-input {
+      margin-bottom: 20px;
+      width: 90%; /* Adjust width for padding */
+      padding: 10px;
+      border: 1px solid #000;
+      font-size: 16px;
+    }
+    .equipment-registration-button {
+      width: 100px;
+      padding: 10px;
+      margin: 10px;
+      background-color: #228B22; /* Forest Green background */
+      color: white;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+    .equipment-registration-button:hover {
+      background-color: #2E8B57; /* Sea Green background for hover */
+    }
+    .equipment-registration-footer {
+      margin-top: 20px;
+    }
+    .equipment-registration-footer a {
+      color: #0000EE; /* Blue color for the link */
+      text-decoration: none;
+    }
+    .footer {
+      background-color: #333; /* Black background for the footer */
+      color: #fff; /* White text color */
+      padding: 10px 0;
+      text-align: center;
+      position: fixed;
+      left: 0;
+  bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  
+<header>
+  <img src="sport.jpg" alt="Sports Logo" class="header-logo">
+  <div class="header-content">
+    <h2>School Sports Equipment Management System</h2>
+  </div>
+</header>
+  <div class="navigator">
+    <a href='menu.html'>Home</a>
+    <a href='EquipmentRegistrations.html'>Equipment Registration</a>
+    <a href='borrowEquip.html'>Borrow Equipment</a>
+    <a href='inventory.html'>Inventory</a>
+    <a href='contactSupplier.html'>Contact Supplier</a>
+    <a href='FAQ.html'>FAQ</a>
+  </div>
+
+  <div class="equipment-registration-container">
+    <h1>SPORTS EQUIPMENT REGISTRATION</h1>
+    <form id="equipment-registration-form">
+      <div>
+        <label for="equipment-id" style="text-align: left;">EQUIPMENT ID</label>
+        <input type="text" id="equipment-id" name="equipmentId" class="equipment-registration-input" required>
+      </div>
+      <div>
+        <label for="equipment-name" style="text-align: left;">EQUIPMENT NAME</label>
+        <input type="text" id="equipment-name" name="equipmentName" class="equipment-registration-input" required>
+      </div>
+     
+      <div>
+        <label for="quantity" style="text-align: left;">QUANTITY</label>
+        <input type="number" id="quantity" name="quantity" class="equipment-registration-input" required>
+      </div>
+
+<div>
+      <label for="equipment-category" style="text-align: left;">EQUIPMENT CATEGORY</label>
+      <select id="equipment-category" name="equipmentCategory" class="equipment-registration-input" required>
+        <option value="">Select Category</option>
+        <option value="Balls">Balls</option>
+        <option value="Net Games">Net Games</option>
+        <option value="Racquet">Racquet</option>
+        <!-- Add more categories here -->
+      </select>
+    </div>
+    
+
+      <div>
+        <button type="submit" class="equipment-registration-button">REGISTER</button>
+      </div>
+    </form>
+   
+
+ 
+
+<!-- ... (existing HTML code) ... -->
+
+<script>
+ // This function initializes the localStorage with default data if it's empty
+function initializeInventoryWithExampleData() {
+  if (!localStorage.getItem('registeredEquipment')) {
+    var exampleData = [
+      { equipmentCategory: 'Balls', equipmentName: 'Soccer Balls', quantity: 10 },
+      { equipmentCategory: 'Balls', equipmentName: 'Basketballs', quantity: 8 },
+      { equipmentCategory: 'Net Games', equipmentName: 'Volleyballs', quantity: 6 },
+      { equipmentCategory: 'Racquets', equipmentName: 'Tennis Racquets', quantity: 4 }
+    ];
+    localStorage.setItem('registeredEquipment', JSON.stringify(exampleData));
+  }
+}
+
+// Call this function when the script loads
+initializeInventoryWithExampleData();
+
+// Retrieves registered equipment from localStorage
+function getRegisteredEquipment() {
+  return JSON.parse(localStorage.getItem('registeredEquipment'));
+}
+
+// Stores registered equipment into localStorage
+function setRegisteredEquipment(equipment) {
+  localStorage.setItem('registeredEquipment', JSON.stringify(equipment));
+}
+
+// Function to register equipment
+function registerEquipment(event) {
+  event.preventDefault(); // Prevent the form from submitting the traditional way
+
+  // Get the values from the form
+  var equipmentId = document.getElementById('equipment-id').value;
+  var equipmentName = document.getElementById('equipment-name').value;
+  var equipmentCategory = document.getElementById('equipment-category').value; // Make sure this ID matches your form
+  var quantity = parseInt(document.getElementById('quantity').value); // Parse the quantity as an integer
+
+  // Get the existing registered equipment
+  var registeredEquipment = getRegisteredEquipment();
+
+  // Check if equipment with the same name and category already exists
+  var existingEquipment = registeredEquipment.find(item =>
+    item.equipmentName === equipmentName && item.equipmentCategory === equipmentCategory
+  );
+
+  if (existingEquipment) {
+    // Equipment with the same name and category already exists, update its quantity
+    existingEquipment.quantity += quantity;
+  } else {
+    // If it doesn't exist, add a new equipment entry
+    var registeredItem = {
+      equipmentCategory: equipmentCategory,
+      equipmentName: equipmentName,
+      quantity: quantity
+    };
+    registeredEquipment.push(registeredItem);
+  }
+
+  // Update the localStorage with the new equipment list
+  setRegisteredEquipment(registeredEquipment);
+
+  // Optionally, reset the form or provide feedback to the user
+  alert('Equipment registered successfully!');
+  document.getElementById('equipment-registration-form').reset();
+}
+
+
+// Add an event listener to the equipment registration form
+document.getElementById('equipment-registration-form').addEventListener('submit', registerEquipment);
+
+
+</script>
+
+<!-- ... (rest of the code remains the same) ... -->
+
+ <div class="footer">
+    &copy; 2023 School Sports Equipment Registration System
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipment Inventory - School Sports Equipment Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffd700; /* Yellow background */
+      margin: 0;
+      padding: 0;
+    }
+   header {
+  background-color: #333;
+  color: white;
+  padding: 10px; /* Reduced padding to make the header less thick */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to the start to push the logo to the left */
+}
+
+.header-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px; /* Adjust space between logo and title */
+}
+
+.header-content {
+  display: flex;
+  justify-content: center; /* Center the title within header-content */
+  flex-grow: 1;
+  position: relative; /* Allows absolute positioning inside */
+}
+
+h2 {
+  position: absolute; /* Position the title absolutely within header-content */
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+    .navigator {
+      background-color: #f8f8f8; /* Grey background for the navigator */
+      color: #333; /* Black text color */
+      padding: 10px 0;
+      text-align: center;
+    }
+    .navigator a {
+      color: #000; /* Black text color */
+      text-decoration: none;
+      margin: 0 15px;
+    }
+    .inventory-container {
+      width: 400px;
+      margin: 50px auto;
+      padding: 40px;
+      background-color: #fff;
+      border: 5px solid black; /* Black border around the form */
+      text-align: center;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.5); /* Add shadow for depth */
+    }
+    h1 {
+      color: black;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    form label {
+      margin-right: 10px;
+    }
+    form select {
+      padding: 10px;
+      border: 1px solid black;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    .footer {
+      background-color: #333; /* Black background for the footer */
+      color: #fff; /* White text color */
+      padding: 10px 0;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <img src="sport.jpg" alt="Sports Logo" class="header-logo">
+  <div class="header-content">
+    <h2>Welcome to the Sports Equipment Management System</h2>
+  </div>
+</header>
+
+  <div class="navigator">
+    <a href='menu.html'>Home</a>
+    <a href='EquipmentRegistrations.html'>Equipment Registration</a>
+    <a href='borrowEquip.html'>Borrow Equipment</a>
+    <a href='inventory.html'>Inventory</a>
+    <a href='contactSupplier.html'>Contact Supplier</a>
+    <a href='FAQ.html'>FAQ</a>
+  </div>
+
+  <div class="inventory-container">
+    <h1>Equipment Inventory</h1>
+  
+    <!-- Category selection form -->
+    <form id="categoryForm">
+      <label for="category">Select Category:</label>
+      <select id="category" name="category" onchange="updateInventory()">
+        <option value="">All Categories</option>
+        <option value="balls">Balls</option>
+        <option value="net_games">Net Games</option>
+        <option value="racquets">Racquets</option>
+        <!-- Add more categories here -->
+      </select>
+    </form>
+
+    <!-- Inventory table -->
+    <table id="inventoryTable">
+      <tr>
+        <th>Category</th>
+        <th>Equipment Name</th>
+        <th>Quantity Left</th>
+      </tr>
+      <!-- Inventory data will be inserted here -->
+    </table>
+  </div>
+
+  <div class="footer">
+    &copy; 2023 School Sports Equipment Management System
+  </div>
+
+  <script>
+  // Initializes localStorage with example data if not already present
+function initializeInventoryWithExampleData() {
+  if (!localStorage.getItem('registeredEquipment')) {
+    var exampleData = [
+      { equipmentCategory: 'Balls', equipmentName: 'Soccer Balls', quantity: 10 },
+      { equipmentCategory: 'Balls', equipmentName: 'Basketballs', quantity: 8 },
+      { equipmentCategory: 'Net Games', equipmentName: 'Volleyballs', quantity: 6 },
+      { equipmentCategory: 'Racquets', equipmentName: 'Tennis Racquets', quantity: 4 }
+    ];
+    localStorage.setItem('registeredEquipment', JSON.stringify(exampleData));
+  }
+}
+
+// Call this function when the script loads to ensure your example data is present
+initializeInventoryWithExampleData();
+
+// Retrieves registered equipment from localStorage
+function getRegisteredEquipment() {
+  return JSON.parse(localStorage.getItem('registeredEquipment'));
+}
+
+// Stores registered equipment into localStorage
+function setRegisteredEquipment(equipment) {
+  localStorage.setItem('registeredEquipment', JSON.stringify(equipment));
+}
+
+// Function to update the inventory table with filter
+function updateInventoryTable() {
+  var categorySelect = document.getElementById('category');
+  var category = categorySelect ? categorySelect.value.toLowerCase() : ''; // Get the selected category
+  var inventoryTable = document.getElementById('inventoryTable');
+  var registeredEquipment = getRegisteredEquipment();
+
+  // Clear existing table rows except for the header
+  while (inventoryTable.rows.length > 1) {
+    inventoryTable.deleteRow(1);
+  }
+
+  // Filter data by selected category if one is chosen
+  var filteredData = category ? registeredEquipment.filter(item => item.equipmentCategory.toLowerCase() === category) : registeredEquipment;
+
+  // Insert filtered data into the table
+  filteredData.forEach(item => {
+    var row = inventoryTable.insertRow();
+    var cellCategory = row.insertCell(0);
+    var cellName = row.insertCell(1);
+    var cellQuantity = row.insertCell(2);
+    cellCategory.textContent = item.equipmentCategory;
+    cellName.textContent = item.equipmentName;
+    cellQuantity.textContent = item.quantity;
+  });
+}
+
+// Function to register or update equipment in the inventory
+function registerOrUpdateEquipment(equipmentName, equipmentCategory, quantityToAdd) {
+  var registeredEquipment = getRegisteredEquipment();
+  var equipmentIndex = registeredEquipment.findIndex(item => 
+    item.equipmentName.toLowerCase() === equipmentName.toLowerCase() && 
+    item.equipmentCategory.toLowerCase() === equipmentCategory.toLowerCase());
+
+  // If the equipment already exists, update the quantity
+  if (equipmentIndex !== -1) {
+    registeredEquipment[equipmentIndex].quantity += quantityToAdd;
+    // Ensure the quantity does not go negative
+    if (registeredEquipment[equipmentIndex].quantity < 0) {
+      registeredEquipment[equipmentIndex].quantity = 0;
+    }
+  } else {
+    // If it doesn't exist, add a new equipment entry
+    registeredEquipment.push({
+      equipmentCategory: equipmentCategory,
+      equipmentName: equipmentName,
+      quantity: quantityToAdd
+    });
+  }
+
+  // Update the localStorage with the new equipment list
+  setRegisteredEquipment(registeredEquipment);
+  // Update the inventory table to reflect changes
+  updateInventoryTable();
+}
+
+// Event listener for the category filter
+document.getElementById('category').addEventListener('change', updateInventoryTable);
+
+// Update the inventory table on page load
+document.addEventListener('DOMContentLoaded', updateInventoryTable);
+
+
+  </script>
+</body>
+</html>

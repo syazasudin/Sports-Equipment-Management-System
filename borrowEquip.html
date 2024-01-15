@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Sports Equipment Borrowing Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffd700; /* Yellow background */
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 400px;
+      margin: 50px auto;
+      padding: 40px;
+      background-color: #fff;
+      border: 5px solid black; /* Black border around the form */
+      text-align: center;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.5); /* Add shadow for depth */
+    }
+    h1 {
+      color: black;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    form label {
+      text-align: left;
+      margin-top: 10px;
+    }
+    form input, form select {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid black;
+      font-size: 16px;
+    }
+    form button {
+      padding: 10px;
+      margin-top: 20px;
+      background-color: #228B22; /* Forest Green background */
+      color: white;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #2E8B57; /* Sea Green background for hover */
+    }
+   header {
+  background-color: #333;
+  color: white;
+  padding: 10px; /* Reduced padding to make the header less thick */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align to the start to push the logo to the left */
+}
+
+    .header-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px; /* Adjust space between logo and title */
+}
+
+.header-content {
+  display: flex;
+  justify-content: center; /* Center the title within header-content */
+  flex-grow: 1;
+  position: relative; /* Allows absolute positioning inside */
+}
+
+h2 {
+  position: absolute; /* Position the title absolutely within header-content */
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+    .footer {
+      background-color: #333; /* Black background for the footer */
+      color: #fff; /* White text color */
+      padding: 10px 0;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    .navigator {
+      background-color:  #f8f8f8; /* Grey background for the navigator */
+      color:  #333; /* Black text color */
+      padding: 10px 0;
+      text-align: center;
+    }
+    .navigator a {
+      color: #000; /* Black text color */
+      text-decoration: none;
+      margin: 0 15px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <img src="sport.jpg" alt="Sports Logo" class="header-logo">
+  <div class="header-content">
+    <h2>School Sports Equipment Management System</h2>
+  </div>
+</header>
+
+  <div class="navigator">
+    <a href='menu.html'>Home</a>
+    <a href='EquipmentRegistrations.html'>Equipment Registration</a>
+    <a href='borrowEquip.html'>Borrow Equipment</a>
+    <a href='inventory.html'>Inventory</a>
+    <a href='contactSupplier.html'>Contact Supplier</a>
+    <a href='FAQ.html'>FAQ</a>
+  </div>
+
+  <div class="container">
+    <h1>Borrow Sports Equipment</h1>
+    <form id="borrowForm">
+    
+
+      <label for="studentName">Student Name:</label>
+      <input type="text" id="studentName" name="studentName" required>
+
+      <label for="equipment">Choose equipment to borrow:</label>
+      <select id="equipment" name="equipment" required>
+        <option value="">Select Equipment</option>
+        <option value="soccer_ball">Soccer Ball</option>
+        <option value="basketball">Basketball</option>
+        <option value="volleyball">Volleyball</option>
+        <option value="tennis_racquet">Tennis Racquet</option>
+        <!-- Add more equipment options here -->
+      </select>
+      <label for="quantity">Quantity:</label>
+<input type="number" id="quantity" name="quantity" required min="1" max="99">
+      <label for="borrowDate">Borrow Date:</label>
+      <input type="date" id="borrowDate" name="borrowDate" required>
+
+ <label for="returnDate">Return Date:</label>
+    <input type="date" id="returnDate" name="returnDate" required>
+
+
+      <button type="submit">Borrow Equipment</button>
+    </form>
+  </div>
+
+
+  <div class="footer">
+    &copy; 2023 School Sports Equipment Management System
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  // Update the equipment dropdown on page load
+  updateEquipmentDropdown();
+});
+
+// Function to update the equipment dropdown based on the inventory
+function updateEquipmentDropdown() {
+  var equipmentSelect = document.getElementById('equipment');
+  var registeredEquipment = getRegisteredEquipment();
+
+  // Clear existing options except the first
+  while (equipmentSelect.options.length > 1) {
+    equipmentSelect.remove(1);
+  }
+
+  // Add equipment options dynamically from the inventory
+  registeredEquipment.forEach(item => {
+    if (item.quantity > 0) { // Only add items that are available
+      var option = new Option(item.equipmentName, item.equipmentName.toLowerCase().replace(/\s+/g, '_'));
+      equipmentSelect.add(option);
+    }
+  });
+}
+
+// Retrieves registered equipment from localStorage
+function getRegisteredEquipment() {
+  return JSON.parse(localStorage.getItem('registeredEquipment') || '[]');
+}
+
+// Stores registered equipment into localStorage
+function setRegisteredEquipment(equipment) {
+  localStorage.setItem('registeredEquipment', JSON.stringify(equipment));
+}
+
+// Function to decrease the quantity of borrowed equipment in the inventory
+function decreaseEquipmentQuantity(equipmentName, quantityBorrowed) {
+  var registeredEquipment = getRegisteredEquipment();
+  var itemIndex = registeredEquipment.findIndex(item => item.equipmentName.toLowerCase() === equipmentName.replace(/_/g, ' '));
+  
+  if (itemIndex !== -1 && registeredEquipment[itemIndex].quantity >= quantityBorrowed) {
+    registeredEquipment[itemIndex].quantity -= quantityBorrowed; // Decrease the quantity by the borrowed amount
+    setRegisteredEquipment(registeredEquipment); // Save the updated inventory
+    return true;
+  } else {
+    alert('Sorry, insufficient ' + equipmentName.replace(/_/g, ' ') + ' available.');
+    return false;
+  }
+}
+
+// Event listener for the borrow form submission
+document.getElementById('borrowForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the form from submitting the traditional way
+
+  var studentName = document.getElementById('studentName').value;
+  var equipment = document.getElementById('equipment').value;
+  var borrowDate = document.getElementById('borrowDate').value;
+  var returnDate = document.getElementById('returnDate').value;
+  var quantityToBorrow = parseInt(document.getElementById('quantity').value); // Assume you have a field to capture the quantity
+
+  // Attempt to decrease the equipment quantity
+  if (decreaseEquipmentQuantity(equipment, quantityToBorrow)) {
+    // Here you would typically send this data to the server
+    console.log('Borrowing Request:', {
+      studentName: studentName,
+      equipment: equipment.replace(/_/g, ' '),
+      borrowDate: borrowDate,
+      returnDate: returnDate,
+      quantity: quantityToBorrow // Logging the borrowed quantity
+    });
+
+    // Show a confirmation message
+    alert('Thank you, ' + studentName + '. Your request to borrow ' + quantityToBorrow + ' ' + equipment.replace(/_/g, ' ') + '(s) from ' + borrowDate + ' to ' + returnDate + ' has been submitted.');
+
+    // Reset the form and update the equipment dropdown
+    document.getElementById('borrowForm').reset();
+    updateEquipmentDropdown();
+  }
+});
+
+
+
+  </script>
+</body>
+</html>
